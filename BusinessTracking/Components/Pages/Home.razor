@@ -1,0 +1,26 @@
+﻿@page "/"
+@using System.Collections.Generic
+@using Newtonsoft.Json
+@using BusinessTracking
+@using Microsoft.EntityFrameworkCore 
+@inject Microsoft.JSInterop.IJSRuntime JSRuntime
+
+<h1>Busy Books</h1>
+
+<!-- Graph 1 -->
+<canvas id="graph1" width="400" height="200"></canvas>
+
+<!-- Graph 2 -->
+<canvas id="graph2" width="400" height="200"></canvas>
+
+<!-- List -->
+<h2>List of Items</h2>
+<ul>
+    <li>One</li>
+    <li>Two</li>
+    <li>Three</li>
+</ul>
+
+@code {
+    // List of Customers
+}

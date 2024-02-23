@@ -1,0 +1,69 @@
+@page "/customers"
+@using BusinessTracking.Models
+@using BusinessTracking.Services
+@inject SupabaseService SupabaseService
+@using System.Net.Http
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.JSInterop
+
+<h3>Customer Management</h3>
+
+<div>
+    <h4>Add New Customer</h4>
+    <input @bind="newCustomer.Name" placeholder="Name" />
+    <input @bind="newCustomer.Address" placeholder="Address" />
+    <input @bind="newCustomer.PhoneNumber" placeholder="Phone Number" />
+    <input @bind="newCustomer.Email" placeholder="Email" />
+    <input @bind="newCustomer.Notes" placeholder="Notes" />
+    <button class="btn btn-success" @onclick="AddNewCustomer">Add New Customer</button>
+</div>
+
+@if (customers != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Customer ID</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in customers)
+            {
+                <tr>
+                    <td>@customer.Id</td>
+                    <td>@customer.Name</td>
+                    <td>@customer.Address</td>
+                    <td>@customer.PhoneNumber</td>
+                    <td>@customer.Email</td>
+                    <td>@customer.Notes</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Customer> customers;
+    private Customer newCustomer = new Customer();
+
+    protected override async Task OnInitializedAsync()
+    {
+        customers = await SupabaseService.FetchCustomers();
+    }
+
+    private async Task AddNewCustomer()
+    {
+        await SupabaseService.CreateCustomer(newCustomer);
+        customers.Add(newCustomer); // Add the new customer to the list
+        newCustomer = new Customer(); // Reset the form
+    }
+}

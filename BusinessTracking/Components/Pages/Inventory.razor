@@ -1,0 +1,87 @@
+@page "/inventory"
+@using BusinessTracking.Models
+@using BusinessTracking.Services
+@inject SupabaseService SupabaseService
+
+<h3>Inventory</h3>
+<button class="btn btn-success" @onclick="() => ShowAddItemForm = true">Add New Item</button>
+
+@if (ShowAddItemForm)
+{
+    <div>
+        <h4>Add New Item</h4>
+        <input @bind="newItem.Name" placeholder="Name" />
+        <input type="number" @bind="newItem.Quantity" placeholder="Quantity" />
+        <input type="number" @bind="newItem.Price" placeholder="Price" />
+        <button class="btn btn-primary" @onclick="AddNewItem">Save</button>
+        <button class="btn btn-secondary" @onclick="() => ShowAddItemForm = false">Cancel</button>
+    </div>
+}
+
+@if (inventoryItems != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Item ID</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in inventoryItems)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.Price</td>
+                    <td><button class="btn btn-primary" @onclick="() => EditItem(item)">Edit</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<button class="btn btn-success" @onclick="AddNewItem">Add New Item</button>
+
+@code {
+    private List<InventoryItem> inventoryItems;
+    private InventoryItem newItem = new InventoryItem();
+    private bool ShowAddItemForm = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        inventoryItems = await SupabaseService.FetchInventoryItems();
+    }
+
+    private async Task AddNewItem()
+    {
+        // Add the item to Supabase
+        await SupabaseService.CreateInventoryItem(newItem);
+        // Optionally, re-fetch or manually add the new item to the list
+        inventoryItems.Add(newItem);
+        newItem = new InventoryItem(); // Reset the form
+        ShowAddItemForm = false; // Hide the form
+    }
+    @code {
+    private InventoryItem selectedItem;
+    private bool showEditItemForm = false;
+
+    private void EditItem(InventoryItem item)
+    {
+        selectedItem = item;
+        showEditItemForm = true; // Show the edit form
+    }
+
+    private async Task UpdateItem()
+    {
+        await SupabaseService.UpdateInventoryItem(selectedItem);
+        showEditItemForm = false; // Hide the edit form after updating
+        // Optionally, refresh the inventory items list or update the UI as needed
+    }
+}
+}
+}
