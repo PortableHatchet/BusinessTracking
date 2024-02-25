@@ -51,6 +51,8 @@ a, .btn-link {
     border-radius: 0.5rem;
     padding: 0 1.5rem;
     color: white;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .top-row a, .top-row .btn-link {

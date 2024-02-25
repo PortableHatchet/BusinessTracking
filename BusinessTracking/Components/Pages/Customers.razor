@@ -10,62 +10,104 @@
 @using BusinessTracking.Services
 @inject BusinessTracking.Services.DatabaseService DatabaseService
 
+<div class="container-fluid bottom-section">
+    <div class="row">
+        <div class="col-12 p-5 mb-4 bg-light rounded-3">
+            <div class="container-fluid py-5">
+                <h1 class="display-5 fw-bold">Customer Management</h1>
+                <p class="fs-4">Add new customers and manage existing ones</p>
+            </div>
+        </div>
+    </div>
 
-<head>
-    <style>
-            <link href="Styles/Customer.css" rel="stylesheet" />
-    </style>
-</head>
-<h3>Customer Management</h3>
+    <div class="row justify-content-center bottom-section">
+        <div class="col-md-10">
+            <div class="mb-3 bg-white p-4 rounded-3 shadow-sm">
+                <h4>Add New Customer</h4>
+                <div class="mb-3">
+                    <input @bind="newCustomer.Name" placeholder="Name" class="form-control mb-2" />
+                    <input @bind="newCustomer.Address" placeholder="Address" class="form-control mb-2" />
+                    <input @bind="newCustomer.PhoneNumber" placeholder="Phone Number" class="form-control mb-2" />
+                    <input @bind="newCustomer.Email" placeholder="Email" class="form-control mb-2" />
+                    <input @bind="newCustomer.Notes" placeholder="Notes" class="form-control mb-2" />
+                    <button class="btn btn-primary" @onclick="() => ButtonClickEvent(newCustomer)">Add New Customer</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<div>
-    <h4>Add New Customer</h4>
-    <input @bind="newCustomer.Name" placeholder="Name" />
-    <input @bind="newCustomer.Address" placeholder="Address" />
-    <input @bind="newCustomer.PhoneNumber" placeholder="Phone Number" />
-    <input @bind="newCustomer.Email" placeholder="Email" />
-    <input @bind="newCustomer.Notes" placeholder="Notes" />
-    <button class="btn btn-success" @onclick="() => ButtonClickEvent(newCustomer)">Add New Customer</button>
-</div>
-
-@if (customers != null)
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Customer ID</th>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Phone Number</th>
-                <th>Email</th>
-                <th>Notes</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var customer in customers)
+    <div class="row justify-content-center bottom-section">
+        <div class="col-md-10">
+            @if (customers != null && customers.Any())
             {
-                <tr>
-                    <td>@customer.Id</td>
-                    <td>@customer.Name</td>
-                    <td>@customer.Address</td>
-                    <td>@customer.PhoneNumber</td>
-                    <td>@customer.Email</td>
-                    <td>@customer.Notes</td>
-                </tr>
+                <div class="table-responsive bg-white p-4 rounded-3 shadow-sm">
+                    <table class="table">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Customer ID</th>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>Phone Number</th>
+                                <th>Email</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var customer in customers)
+                            {
+                                <tr>
+                                    <td>@customer.Id</td>
+                                    <td>@customer.Name</td>
+                                    <td>@customer.Address</td>
+                                    <td>@customer.PhoneNumber</td>
+                                    <td>@customer.Email</td>
+                                    <td>@customer.Notes</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             }
-        </tbody>
-    </table>
-}
+            else
+            {
+                <div class="p-4 bg-white rounded-3 shadow-sm bottom-section">
+                    <p>No customers found.</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
 
 @code {
     private List<Customer> customers = new List<Customer>();
     private Customer newCustomer = new Customer();
+
     protected async Task ButtonClickEvent(Customer customer)
     {
-        await DatabaseService.CreateCustomer(customer);
+        await DatabaseService.CreateCustomer<Customer>(customer);
+        customers = await DatabaseService.FetchCustomers<Customer>(); // Refresh the list
     }
+
     protected override async Task OnInitializedAsync()
     {
-        customers = await DatabaseService.FetchCustomers<Customer>();
+        customers = await DatabaseService.FetchCustomers<Customer>(); // Initial load
     }
 }
+<style>
+    /* Custom styles for bottom section */
+    .bottom-section {
+        background-color: #606C38;
+        border-radius: 10px; /* Adjust border-radius to control the roundness of the corners */
+        padding: 20px; /* Adjust padding as needed */
+    }
+
+    /* Override table background to ensure visibility */
+    .bottom-section table {
+        background-color: transparent;
+    }
+
+    /* Override table text color to ensure visibility */
+    .bottom-section table tr td {
+        color: white;
+    }
+</style>
