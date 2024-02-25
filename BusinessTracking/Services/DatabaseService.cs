@@ -4,7 +4,8 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Supabase.Functions;
 
-namespace BusinessTracking
+
+namespace BusinessTracking.Services
 {
     public class DatabaseService
     {
@@ -23,7 +24,7 @@ namespace BusinessTracking
             return result.Models;
         }
 
-        public async Task<Customer> CreateCustomer<TModel>(TModel item) where TModel : Customer, new()
+        public async Task<Customer> CreateCustomer<TModel>(Customer item) where TModel : Customer, new()
         {
             try
             {

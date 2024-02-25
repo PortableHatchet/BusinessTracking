@@ -7,7 +7,8 @@
 @using Microsoft.AspNetCore.Components.Routing
 @using Microsoft.AspNetCore.Components.Web
 @using Microsoft.JSInterop
-@inject DatabaseService DatabaseService
+@using BusinessTracking.Services
+@inject BusinessTracking.Services.DatabaseService DatabaseService
 
 
 <head>
@@ -57,16 +58,14 @@
 }
 
 @code {
-    private List<Customer> customers;
+    private List<Customer> customers = new List<Customer>();
     private Customer newCustomer = new Customer();
-
-    protected override async Task OnInitializedAsync()
-    {
-        customers = await DatabaseService.FetchCustomers<Customer>();
-    }
     protected async Task ButtonClickEvent(Customer customer)
     {
         await DatabaseService.CreateCustomer(customer);
     }
-
+    protected override async Task OnInitializedAsync()
+    {
+        customers = await DatabaseService.FetchCustomers<Customer>();
+    }
 }

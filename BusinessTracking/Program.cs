@@ -6,6 +6,7 @@ using BusinessTracking;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Supabase;
 using Supabase.Interfaces;
+using BusinessTracking.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,8 +18,9 @@ builder.Services.AddHttpClient(); // Add HttpClient service
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+builder.Services.AddScoped<DatabaseService>();
 var url = "https://gjqaanstallfabsprvwk.supabase.co";
-var key = Environment.GetEnvironmentVariable("KEY");
+var key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdqcWFhbnN0YWxsZmFic3BydndrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDg2NjQ0MTMsImV4cCI6MjAyNDI0MDQxM30.4w0DfsF4Z18v0aBFCxwvq-Im8zzm7bmwJIKWIQyGaiw";
 builder.Services.AddScoped<Supabase.Client>(
     provider => new Supabase.Client(
         url,

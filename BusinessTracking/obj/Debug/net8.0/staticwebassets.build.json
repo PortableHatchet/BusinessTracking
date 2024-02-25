@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "BV3otpxjSoL3WumpiIbBavofAgPpZO3KN14Tpb9i9Iw=",
+  "Hash": "ft1Yw2B9uvdUzQ5gL3YuWAeG2RSvafCXxAumrpwUOTI=",
   "Source": "BusinessTracking",
   "BasePath": "_content/BusinessTracking",
   "Mode": "Default",
@@ -16,6 +16,44 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "/Users/porterhatch/.nuget/packages/mudblazor/6.16.0/staticwebassets/MudBlazor.min.css",
+      "SourceId": "MudBlazor",
+      "SourceType": "Package",
+      "ContentRoot": "/Users/porterhatch/.nuget/packages/mudblazor/6.16.0/staticwebassets/",
+      "BasePath": "_content/MudBlazor",
+      "RelativePath": "MudBlazor.min.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/Users/porterhatch/.nuget/packages/mudblazor/6.16.0/staticwebassets/MudBlazor.min.css"
+    },
+    {
+      "Identity": "/Users/porterhatch/.nuget/packages/mudblazor/6.16.0/staticwebassets/MudBlazor.min.js",
+      "SourceId": "MudBlazor",
+      "SourceType": "Package",
+      "ContentRoot": "/Users/porterhatch/.nuget/packages/mudblazor/6.16.0/staticwebassets/",
+      "BasePath": "_content/MudBlazor",
+      "RelativePath": "MudBlazor.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/Users/porterhatch/.nuget/packages/mudblazor/6.16.0/staticwebassets/MudBlazor.min.js"
+    },
     {
       "Identity": "/Users/porterhatch/CSE325_GroupProject-1/BusinessTracking/obj/Debug/net8.0/scopedcss/bundle/BusinessTracking.styles.css",
       "SourceId": "BusinessTracking",

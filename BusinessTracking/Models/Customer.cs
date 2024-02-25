@@ -5,7 +5,7 @@ using Supabase;
 
 namespace BusinessTracking.Models
 {
-    [Table("customer")]
+    [Table("customers")]
     public class Customer : BaseModel
     {
         [PrimaryKey("id")]
