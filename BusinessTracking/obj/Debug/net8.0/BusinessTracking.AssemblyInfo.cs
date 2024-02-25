@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BusinessTracking")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a3afabe0fabe105b5fa704f925af9601be3705d9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0009ae9a08bb5372df95694129e21be2ff00f2e1")]
 [assembly: System.Reflection.AssemblyProductAttribute("BusinessTracking")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BusinessTracking")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
