@@ -1,7 +1,5 @@
 @page "/customers"
 @using BusinessTracking.Models
-@using BusinessTracking.Services
-@inject SupabaseService SupabaseService
 @using System.Net.Http
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.Authorization
@@ -9,7 +7,14 @@
 @using Microsoft.AspNetCore.Components.Routing
 @using Microsoft.AspNetCore.Components.Web
 @using Microsoft.JSInterop
+@inject DatabaseService DatabaseService
 
+
+<head>
+    <style>
+            <link href="Styles/Customer.css" rel="stylesheet" />
+    </style>
+</head>
 <h3>Customer Management</h3>
 
 <div>
@@ -19,7 +24,7 @@
     <input @bind="newCustomer.PhoneNumber" placeholder="Phone Number" />
     <input @bind="newCustomer.Email" placeholder="Email" />
     <input @bind="newCustomer.Notes" placeholder="Notes" />
-    <button class="btn btn-success" @onclick="AddNewCustomer">Add New Customer</button>
+    <button class="btn btn-success" @onclick="() => ButtonClickEvent(newCustomer)">Add New Customer</button>
 </div>
 
 @if (customers != null)
@@ -57,13 +62,11 @@
 
     protected override async Task OnInitializedAsync()
     {
-        customers = await SupabaseService.FetchCustomers();
+        customers = await DatabaseService.FetchCustomers<Customer>();
+    }
+    protected async Task ButtonClickEvent(Customer customer)
+    {
+        await DatabaseService.CreateCustomer(customer);
     }
 
-    private async Task AddNewCustomer()
-    {
-        await SupabaseService.CreateCustomer(newCustomer);
-        customers.Add(newCustomer); // Add the new customer to the list
-        newCustomer = new Customer(); // Reset the form
-    }
 }

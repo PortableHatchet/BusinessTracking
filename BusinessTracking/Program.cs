@@ -4,7 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BusinessTracking;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
-using BusinessTracking.Services;
+using Supabase;
+using Supabase.Interfaces;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,8 +17,21 @@ builder.Services.AddHttpClient(); // Add HttpClient service
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-// Add the SupabaseService here
-builder.Services.AddScoped<SupabaseService>(); // Adjust this line if SupabaseService should be singleton or transient
+var url = "https://gjqaanstallfabsprvwk.supabase.co";
+var key = Environment.GetEnvironmentVariable("KEY");
+builder.Services.AddScoped<Supabase.Client>(
+    provider => new Supabase.Client(
+        url,
+        key,
+        new Supabase.SupabaseOptions
+        {
+            AutoRefreshToken = true,
+            AutoConnectRealtime = true
+        }
+    )
+);
+
+
 
 var app = builder.Build();
 

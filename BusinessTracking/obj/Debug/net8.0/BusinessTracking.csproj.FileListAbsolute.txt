@@ -123,6 +123,7 @@
 /Users/porterhatch/CSE325_GroupProject-1/BusinessTracking/obj/Debug/net8.0/BusinessTracking.AssemblyInfo.cs
 /Users/porterhatch/CSE325_GroupProject-1/BusinessTracking/obj/Debug/net8.0/BusinessTracking.csproj.CoreCompileInputs.cache
 /Users/porterhatch/CSE325_GroupProject-1/BusinessTracking/obj/Debug/net8.0/BusinessTracking.MvcApplicationPartsAssemblyInfo.cache
+/Users/porterhatch/CSE325_GroupProject-1/BusinessTracking/obj/Debug/net8.0/BusinessTracking.sourcelink.json
 /Users/porterhatch/CSE325_GroupProject-1/BusinessTracking/obj/Debug/net8.0/staticwebassets.build.json
 /Users/porterhatch/CSE325_GroupProject-1/BusinessTracking/obj/Debug/net8.0/staticwebassets.development.json
 /Users/porterhatch/CSE325_GroupProject-1/BusinessTracking/obj/Debug/net8.0/staticwebassets/msbuild.BusinessTracking.Microsoft.AspNetCore.StaticWebAssets.props

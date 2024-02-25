@@ -7,14 +7,19 @@ a, .btn-link {
 }
 .main{
     width: 100%;
+    flex-grow: 1;
+    height: 100vh;
+}
+.article{
+    width: 100%;
 }
 .content{
     width: 100%
 }
 .btn-primary {
     color: #fff;
-    background-color: #20B2AA; 
-    border-color: #20B2AA; 
+    background-color: #606C38; 
+    border-color: #283618; 
 }
 
 .btn, .form-control, .form-check-input {
@@ -26,6 +31,8 @@ a, .btn-link {
     display: flex;
     flex-direction: column;
     padding: 1.5rem; 
+    width: 100%;
+    background-color: #FEFAE0;
 }
 
 .sidebar {
