@@ -11,7 +11,7 @@ This application was developed solely on VS Code, using Microsofts C# plugins fo
 
 # Useful Websites
 
-- [C# Supabase Documentation]([https://github.com/supabase-community/supabase-csharp)
+- [C# Supabase Documentation](https://github.com/supabase-community/supabase-csharp)
 - [Microsoft Blazor Documentation](https://learn.microsoft.com/en-us/aspnet/core/blazor/?view=aspnetcore-8.0)
 
 # Future Work
